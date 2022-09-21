@@ -2,12 +2,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prospectos Manijas y Autopartes SA de CV</title>
+    <title>Sales Prospect</title>
 	
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-	
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     
 </head>
@@ -16,7 +15,7 @@
 <div class="container">
 
 
-        <h1 class="title has-text-centered">Registro de Prospectos</h1>
+        <h1 class="title has-text-centered">Prospect Register</h1>
      
 		
 <?php 
@@ -61,12 +60,7 @@
         $investment=$_GET['investment'];
         $schedule=$_GET['schedule'];
         $details=$_GET['details'];
-     
-    
-
-
-       
-        
+  
 		$resultgab = grabaprospecto($name,$agent,$media,$tel,$sale,$business,$contact,$SESUsuario,$state,$details,$cel,$email,$schedule,$investment);
 								   
 	
@@ -74,8 +68,7 @@
     }
 
     echo $html;
-						
-?>
+>
 
 <form class="row g-3 needs-validation" action="prospect.php" method="GET" novalidate>
 
