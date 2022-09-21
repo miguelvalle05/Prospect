@@ -19,7 +19,7 @@
      
 		
 <?php 
-	include("./funciones.php");
+	include("Conn.php");
 	require_once("../../../programas/utiles/funciones_globales.php");
 				
 	$conexion = conectar();
