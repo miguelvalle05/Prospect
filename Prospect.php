@@ -20,6 +20,7 @@
 		
 <?php 
 	include("Conn.php");
+    include("Fuctions.php");
 	require_once("../../../programas/utiles/funciones_globales.php");
 				
 	$conexion = conectar();
@@ -68,7 +69,7 @@
     }
 
     echo $html;
->
+?>
 
 <form class="row g-3 needs-validation" action="prospect.php" method="GET" novalidate>
 
@@ -79,43 +80,40 @@
 
         
             <div class="col-md-6">
-            <label class="label">Nombre</label>
+            <label class="label">Name</label>
             <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1">  <i class="fas fa-user"></i></span>
-            <input class="form-control" type="text" placeholder="Nombre" name="name" value="" required>
+            <input class="form-control" type="text" placeholder="Name" name="name" value="" required>
  
             
                  <!-- Mensajes para validación   -->
-                <div class="valid-feedback">¡Campo válido!</div>
-                <div class="invalid-feedback">Porfavor ingresa un nombre.</div>
+                <div class="valid-feedback">Valid field!</div>
+                <div class="invalid-feedback">Please enter a name.</div>
             </div>
             </div>
 
             <div class="col-md-6">
-            <label class="label">Empresa</label>
+            <label class="label">Business</label>
             <div class="input-group mb-3">
                  <span class="input-group-text" id="basic-addon1">  <i class="fas fa-building"></i></span>
-                <input class="form-control" type="text" placeholder="Empresa" name="business" value="">
+                <input class="form-control" type="text" placeholder="Bussines" name="business" value="">
                
             </div>
 
-                <!-- Mensajes para validación   
-                <div class="valid-feedback">¡Campo válido!</div>
-                <div class="invalid-feedback">Porfavor ingresa una empresa.</div>-->
             </div>
 
 
             <div class="col-md-4">
-            <label class="label">Telefono</label>
+            <label class="label">Tel</label>
             <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1">  <i class="fas fa-phone"></i></span>
-                <input class="form-control" type="tel" placeholder="Telefono" name="tel" value="" minlength="10" maxlength="10" required>
+                <input class="form-control" type="tel" placeholder="Tel" name="tel" value="" minlength="10" maxlength="10" required>
                 
         
 
                 <!-- Mensajes para validación   -->
-                <div class="valid-feedback">¡Campo válido!</div>
-                <div class="invalid-feedback">Porfavor ingresa un telefono valido.</div>
+                <div class="valid-feedback">Valid field!</div>
+                <div class="invalid-feedback">Please enter a Tel valid.</div>
                
                 
             </div>
@@ -123,15 +121,15 @@
 
 
             <div class="col-md-4">
-            <label class="label">Celular o WhatsApp</label>
+            <label class="label">Cel or WhatsApp</label>
             <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1"> <i class="fab fa-whatsapp"></i></span>
-                <input class="form-control" type="text" placeholder="Celular" name="cel" value=""  minlength="10" maxlength="10" required>
+                <input class="form-control" type="text" placeholder="Cel" name="cel" value=""  minlength="10" maxlength="10" required>
                 
            
                 <!-- Mensajes para validación   -->
-                <div class="valid-feedback">¡Campo válido!</div>
-                <div class="invalid-feedback">Porfavor ingresa un celular valido.</div>
+                <div class="valid-feedback">Invalid field!</div>
+                <div class="invalid-feedback">Plese enter a Cel valid.</div>
                
             </div>
             </div>
@@ -142,9 +140,7 @@
                 <span class="input-group-text" id="basic-addon1"> <i class="fas fa-envelope"></i></span>
                 <input class="form-control" type="text" placeholder="Email" name="email" value="" >
                 
-                <!-- Mensajes para validación   
-                <div class="valid-feedback">¡Campo válido!</div>
-                <div class="invalid-feedback">Porfavor ingresa un email.</div>-->
+               
                
             </div>
             </div>
@@ -155,11 +151,11 @@
 
 
         <div class="col-md-3">
-        <label class="label">Estado</label>
+        <label class="label">State</label>
         <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1">   <i class="fas fa-globe"></i></span>
             <select class="form-select" id="state" name="state" required >
-            <option  selected disabled value="">Selecciona un Estado</option>
+            <option  selected disabled value="">Select a State</option>
 						
 										<?php
 											$result = $conexion->query("SELECT * FROM estados WHERE Pais = 138 ORDER BY Descripcion ASC");
@@ -172,17 +168,17 @@
             </select>
        
             <div class="invalid-feedback">
-            Porfavor selecciona un estado valido.
+            Please select a state valid.
             </div>   
         </div>
         </div>
 
         <div class="col-md-5">
-        <label class="label">Asignado a</label>
+        <label class="label">Agent</label>
         <div class="input-group mb-3">
              <span class="input-group-text" id="basic-addon1">   <i class="fas fa-user"></i> </span>
             <select class="form-select" id="agent" name="agent" required >
-            <option  selected disabled value="">Selecciona un Agente</option>
+            <option  selected disabled value="">Select a Agent</option>
 						
                         <?php
                             $result = $conexion->query("SELECT * FROM agentes WHERE Estatus = 'A' AND ( Agente=2 or Agente=3 or Agente=25 or Agente=27 or Agente=39 or Agente=45 or Agente=47 or Agente=49 or Agente=51 or Agente=53 or Agente=54 or Agente=55 or Agente=59 or Agente=63) Order BY Nombre ASC");
@@ -195,17 +191,17 @@
              </select>
        
              <div class="invalid-feedback">
-            Porfavor selecciona un agente valido.
+            Please select a agent valid.
             </div>
         </div>
         </div>
 
         <div class="col-md-3">
-        <label class="label">Como se entero de nosotros</label>
+        <label class="label">Media</label>
         <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1">   <i class="fas fa-search-location"></i> </span>
         <select class="form-select" id="media" name="media" required >
-            <option  selected disabled value="">Selecciona un Medio</option>
+            <option  selected disabled value="">Select a Media</option>
 						
                         <?php
                             $result = $conexion->query("SELECT * FROM comosentero_ap ORDER BY Descripcion ASC");
@@ -218,17 +214,17 @@
             </select>
         
             <div class="invalid-feedback">
-            Porfavor selecciona un medio valido.
+            Please select a Media valid.
             </div>
         </div>
        </div>
 
         <div class="col-md-3">
-        <label class="label">Medio de contacto</label>
+        <label class="label">Contact</label>
         <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1">   <i class="fas fa-comments"></i> </span>
         <select class="form-select" id="contact" name="contact" required >
-            <option  selected disabled value="">Selecciona un Medio</option>
+            <option  selected disabled value="">Select a Media</option>
 						
                         <?php
                             $result = $conexion->query("SELECT * FROM mediocontacto_ap ORDER BY Descripcion ASC");
@@ -241,13 +237,13 @@
             </select>
        
             <div class="invalid-feedback">
-            Porfavor selecciona un medio valido.
+            Please a Media valid.
             </div>
         </div>
         </div>
 
         <div class="col-md-3">
-        <label class="label">Tipo de venta</label>
+        <label class="label">Sales Type</label>
 
         <div class="form-check">
             <input type="radio" class="form-check-input" id="menudeo" name="sale" value=0 required>
@@ -256,12 +252,12 @@
         <div class="form-check mb-3">
             <input type="radio" class="form-check-input" id="mayoreo" name="sale" value=1 required>
             <label class="form-check-label" for="mayoreo">Mayoreo</label>
-            <div class="invalid-feedback">Ingresa una opcion de tipo de venta</div>
+            <div class="invalid-feedback">Enter a option of sales type</div>
         </div>
         </div>
 
         <div class="col-md-3">
-        <label class="label">Inversion</label>
+        <label class="label">Investment</label>
 
         <div class="form-check">
             <input type="radio" class="form-check-input" id="masi" name="investment" value=1 >
@@ -270,7 +266,7 @@
         <div class="form-check mb-3">
             <input type="radio" class="form-check-input" id="meni" name="investment" value=0 >
             <label class="form-check-label" for="meni">Menos de 7500</label>
-            <div class="invalid-feedback">Ingresa una opcion de inversion</div>
+            <div class="invalid-feedback">Enter a option of Investment</div>
         </div>
         </div>
 
@@ -282,14 +278,14 @@
         <div class="col-md-6">
 
       
-        <label class="label">Horario de Contacto</label>
+        <label class="label">Schudele</label>
         <div class="control">
             <textarea class="form-control" rows="3" name="schedule" placeholder=""></textarea>
         </div>
         </div>
 
         <div class="col-md-6">
-        <label class="label">Detalles</label>
+        <label class="label">Details</label>
         <div class="control">
             <textarea class="form-control" rows="3" name="details" placeholder=""></textarea>
         </div>
@@ -303,7 +299,7 @@
        
 
         <div class="col-12">
-            <button class="btn btn-warning fw-bold float-end" type="submit">Enviar</button>
+            <button class="btn btn-warning fw-bold float-end" type="submit">Send</button>
             
         </div>
 
