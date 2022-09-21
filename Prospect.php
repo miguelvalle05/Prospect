@@ -21,7 +21,7 @@
 <?php 
 	include("Conn.php");
     include("Fuctions.php");
-	require_once("../../../programas/utiles/funciones_globales.php");
+	require_once("../utiles/funciones_globales.php");
 				
 	$conexion = conectar();
     $us=$SESUsuario;
@@ -62,7 +62,7 @@
         $schedule=$_GET['schedule'];
         $details=$_GET['details'];
   
-		$resultgab = grabaprospecto($name,$agent,$media,$tel,$sale,$business,$contact,$SESUsuario,$state,$details,$cel,$email,$schedule,$investment);
+		$resultgab = save_prospect($name,$agent,$media,$tel,$sale,$business,$contact,$SESUsuario,$state,$details,$cel,$email,$schedule,$investment);
 								   
 	
 
