@@ -21,7 +21,8 @@
 <?php 
 	include("Conn.php");
     include("Fuctions.php");
-	require_once("../utiles/funciones_globales.php");
+	require_once("../utiles/GlobalFunctions.php");
+    
 				
 	$conexion = conectar();
     $us=$SESUsuario;
