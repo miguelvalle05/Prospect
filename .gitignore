@@ -1,2 +1,5 @@
 #ignore the file Conn
 Conn.php
+#ignore the file GlobalFuctions
+GlobalFunctions.php
+
