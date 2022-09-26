@@ -1,5 +1,5 @@
 <?
-function grabaprospecto($nombre,$asignadoa,$comosentero,$telefono,$mayoreomenu,$Empresa,$mediocon,$SESUsuario,$Estado,$detalles,$celular,$email,$schedule,$investment){
+function save_prospect($nombre,$asignadoa,$comosentero,$telefono,$mayoreomenu,$Empresa,$mediocon,$SESUsuario,$Estado,$detalles,$celular,$email,$schedule,$investment){
    
     $conexion = conectar();
     
@@ -131,4 +131,124 @@ function send_mail($emailagente,$nombre,$subject,$message){
 		$resultado.=$enviaAlt;
 	return $resultado;
 			}
+
+            		
+	/////FUNCION ACTUALIZAR PROSPECTOS
+	function updateprospect($customer,$nombre,$asignadoa,$comosentero,$telefono,$mayoreomenu,$Empresa,$mediocon,$SESUsuario,$Estado,$detalles,$celular,$email,$schedule,$investment,$account,$datefac,$amount,$fac,$status){
+		
+		$conexion = conectar();
+
+		if(empty($investment)){
+			$inversion="null";
+		}else{
+			$inversion=$investment;
+		}
+
+
+		if(empty($account)){
+			$cuenta="null";
+		}else{
+			$cuenta=$account;
+		}
+
+		
+		if ($status==1){
+			$estatus="Sin contactar";
+		}
+		if ($status==2){
+			$estatus="En cotizacion";
+		}if ($status==3){
+			$estatus="Esperando repuesta";
+		}
+		if ($status==4){
+			$estatus="Cancelado";
+		}
+		if ($status==5){
+			$estatus="Venta concluida";
+		}
+
+
+
+
+		
+		
+		///Obtenemos el Estado registrado por el ID
+		$consultaestado="SELECT * FROM estados WHERE Estado = '$Estado';";
+		$result2 = $conexion->query($consultaestado);
+		
+		while($row = $result2->fetch_assoc()){
+				$Estado=$row['Descripcion'];
+			}
+			
+		///Obtenermos el nombre del usuario 
+		$consultanombreuser="SELECT * FROM `usuarios` WHERE `Usuario` = '$SESUsuario';";
+		$result2 = $conexion->query($consultanombreuser);
+		
+		while($row = $result2->fetch_assoc()){
+			$nombreuser=$row['Nombre'];
+		}
+			
+		///Obtenermos el nombre del Agente 
+		$nombreagente="SELECT * FROM `agentes` WHERE `Agente` = '$asignadoa';";
+		$result2 = $conexion->query($nombreagente);
+		
+		while($row = $result2->fetch_assoc()){
+			$asignadoa=$row['Nombre'];
+			$emailagente=$row['Email'];
+		}	
+		
+		
+		///Obtenemos como se entero
+		$nombrecomose="SELECT * FROM `comosentero_ap` WHERE `Id` = '$comosentero';";
+		$result2 = $conexion->query($nombrecomose);
+		
+		while($row = $result2->fetch_assoc()){
+			$comosentero=$row['Descripcion'];
+		}
+			
+		///Obtenemos nos contacto por
+		$nombremediocon="SELECT * FROM `mediocontacto_ap` WHERE `Id` = '$mediocon';";
+		$result2 = $conexion->query($nombremediocon);
+		
+		while($row = $result2->fetch_assoc()){
+			$mediocon=$row['Descripcion'];
+		}
+
+		//if (isset($nombre) && !empty($nombre) || isset($telefono) && !empty($telefono) || isset($Estado) && !empty($Estado) || isset($mayoreomenu) && !empty($mayoreomenu) || isset($asignadoa) && !empty($asignadoa) || isset($comosentero) && !empty($comosentero) || isset($mediocon) && !empty($mediocon)) {
+			
+			
+			$updatepros=("UPDATE prospectos_ap 
+			SET Nombre_p='$nombre',
+			Telefono='$telefono',
+			Empresa='$Empresa',
+			Estado='$Estado',
+			como_se_entero='$comosentero',
+			AsignadoA='$asignadoa',
+			mayoreo_menudeo='$mayoreomenu',
+			Medio='$mediocon',
+			Comentarios_adicionales='$detalles',
+			celularwhat='$celular',
+			email='$email',
+			horario='$schedule',
+			inversion='$investment',
+			id_cliente=$cuenta,
+			fecha_factura='$datefac',
+			monto_compra='$amount',
+			factura='$fac',
+			inversion=$inversion,
+			estatus='$estatus'
+			WHERE ID_p='$customer'"); 
+			
+			
+			//echo $insertar;
+			$result3 = $conexion->query($updatepros);
+			
+		return $updatepros;
+			//print_r($updatepros);
+		//}
+
+	}
+	///////FIN DE FUNCION
+	
+
 ?>
